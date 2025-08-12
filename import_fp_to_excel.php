@@ -3,16 +3,7 @@ require 'vendor/autoload.php';
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
 // Koneksi Database
-$host = "localhost";
-$username = "root";
-$password = "";
-$database = "native_tarik_fp";
-$koneksi = mysqli_connect($host, $username, $password, $database);
-
-if (!$koneksi) {
-    die("Koneksi gagal: " . mysqli_connect_error());
-}
-
+require 'config/database.php';
 // Fungsi untuk membersihkan input
 function bersihkan($koneksi, $data) {
     return mysqli_real_escape_string($koneksi, trim($data));
@@ -70,12 +61,11 @@ if (isset($_POST['submit'])) {
     }
 }
 ?>
+<div class="content">
+    <div class="container-fluid">
+      
+     
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Import Excel ke Database</title>
-</head>
 <body>
     <h2>Import Data Absensi dari Excel</h2>
     <form method="post" enctype="multipart/form-data">
@@ -84,7 +74,7 @@ if (isset($_POST['submit'])) {
         <button type="submit" name="submit">Import Data</button>
     </form>
 
-    <p><strong>Format File Excel:</strong></p>
+    <p><strong>Format File Excel:</strong> <a href="uploads/TemplateImport.xlsx" download="TemplateImport.xlsx">Download Format</a></p>
     <table border="1">
         <tr>
             <th>Nik</th>
