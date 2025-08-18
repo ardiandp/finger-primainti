@@ -1,5 +1,5 @@
 <?php
-$profile=mysqli_query($conn,"select *from datadiri where nim='$_SESSION[MM_Username]' ");
+$profile=mysqli_query($conn,"select *from datadiri where nik='$_SESSION[MM_Username]' ");
 $data=mysqli_fetch_array($profile);
 ?>
 	
@@ -16,7 +16,7 @@ $data=mysqli_fetch_array($profile);
 
               <h3 class="profile-username text-center"><?php echo $data['nama_lengkap'] ?></h3>
 
-              <p class="text-muted text-center"><?php echo $data['nim'] ?></p>
+              <p class="text-muted text-center"><?php echo $data['nik'] ?></p>
 
               <ul class="list-group list-group-unbordered">
                 <li class="list-group-item">
@@ -148,10 +148,10 @@ $data=mysqli_fetch_array($profile);
               <div class="tab-pane" id="settings">
                 <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
                   <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">NIM / NIK</label>
+                    <label for="inputName" class="col-sm-2 control-label">nik / NIK</label>
 
                     <div class="col-sm-10">
-                      <input type="text" value="<?php echo $data['nim'] ?>" class="form-control" id="inputName" name="nik" placeholder="Input Username Atau nik Anda">
+                      <input type="text" value="<?php echo $data['nik'] ?>" class="form-control" id="inputName" name="nik" placeholder="Input Username Atau nik Anda">
                     </div>
                   </div>
                   <div class="form-group">
@@ -256,8 +256,8 @@ $nama_file_unix=$foto.$nik.$ext;
 $move=move_uploaded_file($_FILES['foto']['tmp_name'],'../uploads/foto/'.$nama_file_unix);
       $update=mysqli_query($conn, "update datadiri set nama_lengkap='$_POST[nama]',tempat_lahir='$_POST[tempat_lahir]',tanggal_lahir='$_POST[tanggal_lahir]',
                                                no_telp='$_POST[no_telp]',keahlian='$_POST[keahlian]',pendidikan='$_POST[pendidikan]',
-                                               alamat='$_POST[alamat]',status='$_POST[status]',foto='$nama_file_unix' where nim='$nik' ") or die (mysqli_error($conn));
-		  $updateAdmin=mysqli_query($conn, "update admin set nama_lengkap='$_POST[nama]',no_telp='$_POST[no_telp]',gambar='$nama_file_unix' where nim='$nik' ") or die (mysqli_error($conn));
+                                               alamat='$_POST[alamat]',status='$_POST[status]',foto='$nama_file_unix' where nik='$nik' ") or die (mysqli_error($conn));
+		  $updateAdmin=mysqli_query($conn, "update admin set nama_lengkap='$_POST[nama]',no_telp='$_POST[no_telp]',gambar='$nama_file_unix' where nik='$nik' ") or die (mysqli_error($conn));
       
 //awal log atifitas
 $username=$_SESSION['MM_Username'];

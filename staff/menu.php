@@ -1,13 +1,6 @@
-<?php
-$query_Recordset1 = "SELECT * FROM menu";
-$Recordset1 = $conn->query($query_Recordset1) or die($conn->error);
-$totalRows_Recordset1 = $Recordset1->num_rows;
-?>
 
 
- <section class="content-header">
-   
-     	
+ <section class="content-header">     	
 		<section class="content">
           <div class="row">
             <div class="col-xs-12">
@@ -30,7 +23,13 @@ $totalRows_Recordset1 = $Recordset1->num_rows;
                       </tr>
                     </thead>
                     <tbody>
-					<?php do { ?>
+                      <?php
+$query_Recordset1 = "SELECT * FROM menu";
+$Recordset1 = mysqli_query($conn, $query_Recordset1) or die(mysqli_error($conn));
+$totalRows_Recordset1 = mysqli_num_rows($Recordset1);
+
+while ($row_Recordset1 = mysqli_fetch_assoc($Recordset1)) {
+                      ?>
                       
                       <tr>
                         <td><?php echo $row_Recordset1['id']; ?></td>
@@ -39,10 +38,10 @@ $totalRows_Recordset1 = $Recordset1->num_rows;
                         <td><?php echo $row_Recordset1['icon']; ?></td>
                         <td><?php echo $row_Recordset1['is_active']; ?></td>
 						<td><?php echo $row_Recordset1['is_parent']; ?> </td>
-						<td> <a href="?page=edit_menu&id=<?php echo $row_Recordset1['id']; ?>">Edit </a><a href="?page=del_menu&id=<?php echo $row_Recordset1['id']; ?>">Del</a></td>
+						<td> <a href="?page=edit_menu&id=<?php echo $row_Recordset1['id']; ?>" class="btn btn-sm btn-primary">Edit </a><a href="?page=del_menu&id=<?php echo $row_Recordset1['id']; ?>" class="btn btn-sm btn-danger">Del</a></td>
                       </tr>
-                       <?php } while ($row_Recordset1 = $Recordset1->fetch_assoc()); ?>                   
-                    
+                      
+                      <?php } ?>                   
                     </tbody>                  
                   </table>
                 </div><!-- /.box-body -->

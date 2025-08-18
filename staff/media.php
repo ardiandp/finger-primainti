@@ -224,7 +224,7 @@ else
 		  <!-- awal menu -->
 <?php
 //$conn = mysqli_connect('localhost', 'your_username', 'your_password', 'your_database');
-$main = mysqli_query($conn, "SELECT `level`.`level`,admin.nama_lengkap,admin.nim,akses.id_level,akses.menu,menu.`name`,menu.id,menu.icon from `level` join admin on admin.`id_level`=`level`.id_level join akses on admin.`id_level`=akses.id_level join menu on akses.menu=menu.id WHERE menu.is_parent='0' and admin.nim='$_SESSION[MM_Username]'");
+$main = mysqli_query($conn, "SELECT `level`.`level`,admin.nama_lengkap,admin.nik,akses.id_level,akses.menu,menu.`name`,menu.id,menu.icon from `level` join admin on admin.`id_level`=`level`.id_level join akses on admin.`id_level`=akses.id_level join menu on akses.menu=menu.id WHERE menu.is_parent='0' and admin.nik='$_SESSION[MM_Username]'");
 while($r = mysqli_fetch_array($main))
 {?>
             <li class="treeview">
@@ -235,7 +235,7 @@ while($r = mysqli_fetch_array($main))
 
 			  <ul class="treeview-menu">
 <?php
-$sub = mysqli_query($conn, "SELECT `level`.`level`,admin.nama_lengkap,admin.nim,akses.id_level,akses.menu,menu.`name`,menu.link,menu.icon from `level` join admin on admin.`id_level`=`level`.id_level join akses on admin.`id_level`=akses.id_level join menu on akses.menu=menu.id WHERE menu.is_parent='$r[id]'  and admin.nim='$_SESSION[MM_Username]'");
+$sub = mysqli_query($conn, "SELECT `level`.`level`,admin.nama_lengkap,admin.nik,akses.id_level,akses.menu,menu.`name`,menu.link,menu.icon from `level` join admin on admin.`id_level`=`level`.id_level join akses on admin.`id_level`=akses.id_level join menu on akses.menu=menu.id WHERE menu.is_parent='$r[id]'  and admin.nik='$_SESSION[MM_Username]'");
 while($w = mysqli_fetch_array($sub))
                    {?>
 
@@ -310,19 +310,19 @@ while($w = mysqli_fetch_array($sub))
     </script>
 <?php
 /*
-$bipres = mysqli_query($conn, "SELECT thn_bpres, COUNT(nim) AS jumlah FROM `bpres-data_diri` group by thn_bpres") or die(mysqli_error($conn));
+$bipres = mysqli_query($conn, "SELECT thn_bpres, COUNT(nik) AS jumlah FROM `bpres-data_diri` group by thn_bpres") or die(mysqli_error($conn));
 while($bp=mysqli_fetch_array($bipres))
 {
   $viewbp[]=$bp;
 }
 
-$pdd=mysqli_query($conn, "SELECT jenjang_pendidikan as pendidikan, COUNT(nim) as jumlah FROM `bpres-data_diri` GROUP BY jenjang_pendidikan") or die(mysqli_error($conn));
+$pdd=mysqli_query($conn, "SELECT jenjang_pendidikan as pendidikan, COUNT(nik) as jumlah FROM `bpres-data_diri` GROUP BY jenjang_pendidikan") or die(mysqli_error($conn));
 while($pd=mysqli_fetch_array($pdd))
 {
   $viewpd[]=$pd;
 }
 
-$kampus=mysqli_query($conn, "SELECT kampus as label, COUNT(nim) as value FROM `bpres-data_diri` GROUP BY kampus") or die(mysqli_error($conn));
+$kampus=mysqli_query($conn, "SELECT kampus as label, COUNT(nik) as value FROM `bpres-data_diri` GROUP BY kampus") or die(mysqli_error($conn));
 while($k=mysqli_fetch_array($kampus))
 {
   $viewkampus[]=$k;

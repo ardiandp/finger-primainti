@@ -5,20 +5,20 @@ include ('Connections/library.php');
 
 date_default_timezone_set('Asia/Jakarta');
 $pass=$_POST['password'];
-$username=$_POST['nim'];
+$username=$_POST['nik'];
 $time=date('Y-m-d');
 $jam=date('H:i:s');
 $ip=$_SERVER['REMOTE_ADDR'];
 $browser=$_SERVER['HTTP_USER_AGENT']; 
 $day=date('D');
 
-$login=mysqli_query($conn, "SELECT * FROM admin JOIN level ON admin.id_level=level.id_level WHERE admin.nim='$username' AND admin.password='$pass' AND admin.blokir='N'");
+$login=mysqli_query($conn, "SELECT * FROM admin JOIN level ON admin.id_level=level.id_level WHERE admin.nik='$username' AND admin.password='$pass' AND admin.blokir='N'");
 $ketemu=mysqli_num_rows($login);
 $r=mysqli_fetch_array($login);
 
 if($ketemu > 0 )
 {		
-    $_SESSION['MM_Username']=$r['nim'];	
+    $_SESSION['MM_Username']=$r['nik'];	
     $_SESSION['nama_lengkap'] =$r['nama_lengkap'];
     $_SESSION['pass'] =$r['password'];
     $_SESSION['level'] =$r['level'];

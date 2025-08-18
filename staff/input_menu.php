@@ -1,26 +1,10 @@
 <?php
-if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
-  $insertSQL = sprintf("INSERT INTO menu ( name, link, icon, is_active, is_parent, `level`) VALUES ( %s, %s, %s, %s, %s, %s)",
-                      
-                       GetSQLValueString($_POST['name'], "text"),
-                       GetSQLValueString($_POST['link'], "text"),
-                       GetSQLValueString($_POST['icon'], "text"),
-                       GetSQLValueString($_POST['is_active'], "text"),
-                       GetSQLValueString($_POST['is_parent'], "int"),
-                       GetSQLValueString($_POST['level'], "text"));
-
-  $Result1 = mysqli_query($conn, $insertSQL) or die(mysqli_error($conn));
-  echo "<script>document.location='?page=menu' </script> ";
-}
-
 $menu = mysqli_query($conn, "SELECT * FROM menu where is_parent='0'") or die(mysqli_error($conn));
 $row_menu = mysqli_fetch_assoc($menu);
 $totalRows_menu = mysqli_num_rows($menu);
 ?>
  <section class="content-header">		  
-		      
-      
-		
+	
 	<!-- Main content -->
         <section class="content">
           <div class="row">
@@ -32,7 +16,7 @@ $totalRows_menu = mysqli_num_rows($menu);
                   <h3 class="box-title">Input Menu</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
-<form action="<?php echo $editFormAction; ?>" method="post" name="form1" id="form1">
+<form action="" method="post" name="form1" id="form1">
 <div class="box-body">
                    
     <div class="form-group">
@@ -88,7 +72,7 @@ $totalRows_menu = mysqli_num_rows($menu);
 	</div>
     <tr valign="baseline">
       <td nowrap="nowrap" align="right">&nbsp;</td>
-      <td><input type="submit" value="Insert record" class="btn btn-primary" /></td>
+      <td><input type="submit" name="simpan" value="Insert record" class="btn btn-primary" /></td>
     </tr>
   </table>
   <input type="hidden" name="MM_insert" value="form1" />
@@ -102,3 +86,21 @@ mysqli_free_result($menu);
 </div>
 </div>
   </section>
+
+
+<?php
+if (isset($_POST['simpan'])) {
+    $name = $_POST['name'];
+    $link = $_POST['link'];
+    $icon = $_POST['icon'];
+    $is_active = $_POST['is_active'];
+    $is_parent = $_POST['is_parent'];
+    $level = $_POST['level'];
+
+    $stmt = mysqli_prepare($conn, "INSERT INTO menu (name, link, icon, is_active, is_parent, level) VALUES (?, ?, ?, ?, ?, ?)");
+    mysqli_stmt_bind_param($stmt, "sssssi", $name, $link, $icon, $is_active, $is_parent, $level);
+    mysqli_stmt_execute($stmt);
+
+    echo "<script>document.location='?page=menu'</script>";
+}
+?>
