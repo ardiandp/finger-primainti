@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_info" value="name:idsetting;datatype:int,name:nama1;datatype:string,name:nama2;datatype:string,name:versi;datatype:string,name:title;datatype:string,name:aktif;datatype:string" />
+</info>

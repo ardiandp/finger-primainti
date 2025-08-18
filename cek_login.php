@@ -1,58 +1,45 @@
 <?php
 session_start();
+include ('Connections/koneksi.php');
+include ('Connections/library.php');
 
-// Redirect ke login jika tidak ada session
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit();
+date_default_timezone_set('Asia/Jakarta');
+$pass=$_POST['password'];
+$username=$_POST['nim'];
+$time=date('Y-m-d');
+$jam=date('H:i:s');
+$ip=$_SERVER['REMOTE_ADDR'];
+$browser=$_SERVER['HTTP_USER_AGENT']; 
+$day=date('D');
+
+$login=mysqli_query($conn, "SELECT * FROM admin JOIN level ON admin.id_level=level.id_level WHERE admin.nim='$username' AND admin.password='$pass' AND admin.blokir='N'");
+$ketemu=mysqli_num_rows($login);
+$r=mysqli_fetch_array($login);
+
+if($ketemu > 0 )
+{		
+    $_SESSION['MM_Username']=$r['nim'];	
+    $_SESSION['nama_lengkap'] =$r['nama_lengkap'];
+    $_SESSION['pass'] =$r['password'];
+    $_SESSION['level'] =$r['level'];
+    $_SESSION['foto']=$r['gambar'];
+    $_SESSION['lokasi']='BSD';
+    $_SESSION['waktu']=date('Y-m-d');
+    $_SESSION['time']=date('H:i:s');
+    $_SESSION['ip']=$_SERVER['REMOTE_ADDR'];
+    $_SESSION['browser']=$_SERVER['HTTP_USER_AGENT'];
+
+//    $log=mysqli_query($conn, "INSERT INTO log VALUES ('','$username','$ip','$browser','$time','$day','$jam')");
+    //awal log atifitas
+    $username=$_SESSION['MM_Username'];
+    $waktu=date('Y-m-d H:i:s');
+    $keterangan="melakukan login pada $waktu";
+    $hari=date('D');
+  //  $logact=mysqli_query($conn, "INSERT INTO log_aktifitas (username,keterangan,hari,waktu) VALUES ('$username','$keterangan','$hari','$waktu')");
+    //akhir simpan log
+    header("Location: staff/media.php?page=home");
 }
-
-// Koneksi database untuk cek user masih valid
-   //$conn = new mysqli("localhost", "dev", "terserah", "winkur");
-require_once 'config/database.php';
-$query = "SELECT id, role_id FROM users WHERE id = ? AND is_active = 1 LIMIT 1";
-$stmt = $conn->prepare($query);
-$stmt->bind_param("i", $_SESSION['user_id']);
-$stmt->execute();
-$result = $stmt->get_result();
-
-if ($result->num_rows == 1) {
-    $user = $result->fetch_assoc();
-    $_SESSION['user_role_id'] = $user['role_id'];
+else
+{
+    header("Location: index.php");
 }
-
-if ($result->num_rows == 0) {
-    // User tidak valid/tidak aktif, hapus session dan redirect ke login
-    session_unset();
-    session_destroy();
-    header("Location: login.php");
-    exit();
-}
-
-$conn->close();
-
-// Fungsi untuk cek permission
-// function checkPermission($page) {
-   // $conn = new mysqli("localhost", "dev", "terserah", "winkur");
-    
-    // Ambil nama file dari URL
-   // $page_name = basename($page, '.php');
-    
-   /* $query = "SELECT p.can_view 
-              FROM permissions p
-              JOIN menus m ON p.menu_id = m.id
-              WHERE p.role_id = ? AND m.url LIKE ? AND p.can_view = 1
-              LIMIT 1";
-    
-    $stmt = $conn->prepare($query);
-    $search_page = "%{$page_name}%";
-    $stmt->bind_param("is", $_SESSION['role_id'], $search_page);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    
-    $conn->close();
-    return $result->num_rows > 0;
-} */
-
-
-?>

@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_daftarsiswa" value="name:no;datatype:int,name:jenis_sekolah;datatype:string,name:kategori;datatype:string,name:nama_sekolah;datatype:string,name:kabupaten;datatype:string,name:alamat;datatype:blob,name:cp_guru;datatype:string,name:jabatan;datatype:string,name:hp;datatype:string,name:keterangan;datatype:blob" />
+</info>

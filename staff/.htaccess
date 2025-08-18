@@ -1,0 +1,21 @@
+<IfModule mod_rewrite.c>
+RewriteEngine on
+
+RewriteRule ^$ media.php?module=home [L]
+
+#DASHBOARD 
+RewriteRule ^home media.php?page=home [L]
+RewriteRule ^profile media.php?page=profile [L]
+RewriteRule ^logout media.php?page=logout [L]
+
+#SETTING */
+RewriteRule ^setting/editmatkul/(.*)-([0-9]+)/ media.php?page=setting/edit_matkul&id$1 [L]
+RewriteRule ^setting/matkul media.php?page=setting/matkul [L]
+
+
+
+
+
+
+RewriteRule ^berita-(.*)\.html$ media.php?module=detailberita&judul=$1
+RewriteRule ^halkomentar-(.*)-([0-9]+)\.html$ media.php?module=detailberita&judul=$1&halkomentar=$2 [L]

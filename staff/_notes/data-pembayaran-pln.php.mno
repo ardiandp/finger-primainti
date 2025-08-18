@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_data" value="name:idbayar;datatype:int,name:aplikasi;datatype:string,name:tgl_beli;datatype:string,name:idpel;datatype:int,name:nama;datatype:string,name:daya;datatype:string,name:periode;datatype:string,name:meter;datatype:string,name:admin;datatype:int,name:tagihan;datatype:int,name:total;datatype:int" />
+</info>

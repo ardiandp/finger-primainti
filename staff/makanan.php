@@ -1,0 +1,104 @@
+<style>
+body{
+	font-family: roboto;
+}
+
+h1{
+	width: 650px;
+}
+
+table{
+	border-collapse: collapse;
+}
+
+table th, table td{
+	padding: 10px 20px;
+}
+</style>
+
+<!DOCTYPE html>
+<html>
+
+	<h2>Input Banyak Data Makanan</h2>
+	
+	<form method="post" action="?page=simpan_makanan">		
+	<table>
+		<tr>
+			<td>
+				<input type="checkbox" name="makanan[]" value="Nasi Goreng">
+			</td>
+			<td>
+				Nasi Goreng
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="checkbox" name="makanan[]" value="Mie Goreng">
+			</td>
+			<td>
+				Mie Goreng
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="checkbox" name="makanan[]" value="Bakso">
+			</td>
+			<td>
+				Bakso
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="checkbox" name="makanan[]" value="Soto Ayam">
+			</td>
+			<td>
+				Soto Ayam
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="checkbox" name="makanan[]" value="Sate Padang">
+			</td>
+			<td>
+				Sate Padang
+			</td>
+		</tr>
+		<tr>
+			<td>				
+			</td>
+			<td>
+				<input type="submit" value="Input Makanan" name="simpan">
+			</td>
+		</tr>
+	</table>
+	</form>
+
+</body>
+</html>
+
+
+<h2>Data Makanan</h2>
+<form method="post" action="?page=simpan_makanan&act=del">
+<table border="1">
+	<tr>
+        <td>Pilih</td>
+		<th>No</th>
+		<th>Nama Makanan</th>
+	</tr>
+	<?php 
+	
+	$data = mysql_query("select * from makanan");
+	$no = 1;
+	while($d = mysql_fetch_array($data)){
+	?>
+	<tr>
+        <td><input type="checkbox" value="<?php echo $d['id']; ?>" name="id[]"> </td>
+		<td><?php echo $no++; ?></td>
+		<td><?php echo $d['makanan']; ?></td>		
+	</tr>
+    
+	<?php } ?>
+    <tr><td colspan="3"><input type="submit" value="HAPUS DATA" name="hapus"></td></tr>
+</table>
+</form>
+

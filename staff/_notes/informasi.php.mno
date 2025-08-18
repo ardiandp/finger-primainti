@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_info" value="name:id_informasi;datatype:int,name:penulis;datatype:string,name:judul;datatype:string,name:keteranagn;datatype:blob,name:tanggal;datatype:date" />
+	<infoitem key="UD_indo" value="name:id_informasi;datatype:int,name:penulis;datatype:string,name:judul;datatype:string,name:keteranagn;datatype:blob,name:tanggal;datatype:date,name:new;datatype:string,name:publish;datatype:string" />
+</info>

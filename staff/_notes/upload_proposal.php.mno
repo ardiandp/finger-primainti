@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_kampus" value="name:idkampus;datatype:int,name:kode;datatype:string,name:namaKampus;datatype:blob,name:telp;datatype:string,name:alamat;datatype:blob,name:kk;datatype:string,name:maps;datatype:blob" />
+	<infoitem key="UD_ormawa" value="name:idormawa;datatype:int,name:namaormawa;datatype:string,name:kampus;datatype:string,name:ketua;datatype:string" />
+</info>

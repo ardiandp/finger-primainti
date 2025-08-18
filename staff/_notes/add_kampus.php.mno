@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_kk" value="name:id_admin;datatype:int,name:nim;datatype:int,name:password;datatype:string,name:nama_lengkap;datatype:string,name:inisial;datatype:string,name:email;datatype:string,name:no_telp;datatype:string,name:level;datatype:string,name:blokir;datatype:string,name:gambar;datatype:string" />
+</info>
