@@ -19,7 +19,7 @@
                             <label for="exampleInputEmail1">Nama Lengkap</label>
                             <input type="text" name="nama_lengkap" class="form-control" id="exampleInputEmail1" placeholder="Nama Lengkap">
                         </div>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
                     </form>
                 </div><!-- /.box-body -->
             </div><!-- /.box -->
