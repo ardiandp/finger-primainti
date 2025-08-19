@@ -10,7 +10,7 @@
                   <h3 class="box-title">Kalender Kerja </h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                  <table id="example1" class="table table-bordered table-striped">
+                  <table id="example2" class="table table-bordered table-striped">
                     <thead>
                       <tr>
                 <th>ID</th>
@@ -46,3 +46,20 @@
 </div>
 </div>
 </section>
+
+<script>
+  $(function () {
+    $('#example6').DataTable({
+      'paging'      : true,
+      'lengthChange': true,
+      'searching'   : true,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : true,
+      'dom'         : 'Bfrtip',
+      'buttons'     : [
+        'copy', 'csv', 'excel', 'pdf', 'print'
+      ]
+    })
+  })
+</script>

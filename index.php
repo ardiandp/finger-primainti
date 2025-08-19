@@ -153,7 +153,7 @@ include ('Connections/getGeoIP.freegeoip.net.php');
             <div class="box-body">
 		  <div class="form-group">
 					<label for="exampleInputPassword1">Masukan Username</label>
-                      <input type="text" class="form-control" name="nim" placeholder="Masukan NIM Anda"/>
+                      <input type="text" class="form-control" name="nik" placeholder="Masukan NIM Anda"/>
                     </div>
                     <div class="form-group">
 					<label for="exampleInputPassword1">Masukan Psssword</label>
