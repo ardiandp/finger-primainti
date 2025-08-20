@@ -1,10 +1,17 @@
-<div class="table-responsive">
-   <div class="box-body">
+<section class="content-header">     	
+		<section class="content">
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="box box-primary">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Data Karyawan</h3>
+                </div>
+                <div class="box-body">
                   <table id="example1" class="table table-bordered table-striped">
                     <thead>
             <tr>
                 <th>ID</th>
-                <th>Name</th>
+                <th>Nama</th>
                 <th>NIK</th>
                 <th>Nama Jabatan</th>
                 <th>Nama Bagian</th>
@@ -39,8 +46,8 @@
                     <td><?php echo $row['nama_bagian']; ?></td>
                     <td><?php echo $row['nama_unit']; ?></td>
                     <td>
-                        <a href="edit_karyawan.php?id=<?php echo $row['id']; ?>">Edit</a> | 
-                        <a href="hapus_karyawan.php?id=<?php echo $row['id']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</a>
+                        <a href="edit_karyawan.php?id=<?php echo $row['id']; ?>" class="btn btn-info btn-sm">Edit</a> | 
+                        <a href="hapus_karyawan.php?id=<?php echo $row['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</a>
                     </td>
                 </tr>
             <?php } ?>
@@ -48,3 +55,7 @@
     </table>
 </div>
 </div>
+</div>
+</div>
+</section>
+</section>

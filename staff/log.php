@@ -1,11 +1,11 @@
 <?php
-$log = mysqli_query($conn, "SELECT log.id_log, log.nim, log.ip, log.browser, log.tanggal, log.time, log.hari, admin.nama_lengkap FROM admin INNER JOIN log ON admin.nim=log.nim ORDER BY log.id_log DESC");
+$log = mysqli_query($conn, "SELECT log.id_log, log.nik, log.ip, log.browser, log.tanggal, log.time, log.hari, admin.nama_lengkap FROM admin INNER JOIN log ON admin.nik=log.nik ORDER BY log.id_log DESC");
 if (!$log) {
     die("Query Error: " . mysqli_error($conn));
 }
 $totalRows_log = mysqli_num_rows($log);
 ?>
-<h1>LOG AKSES WEBSITE</h1>
+  
 
 <!-- Main content -->
 <section class="content">
@@ -13,6 +13,9 @@ $totalRows_log = mysqli_num_rows($log);
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-body">
+                    <div class="box-header ">
+                        <h3 class="box-title">Data Log</h3>
+                    </div>
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                             <tr>

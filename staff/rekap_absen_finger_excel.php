@@ -28,10 +28,13 @@ if ($result->num_rows > 0) { ?>
 		<section class="content">
           <div class="row">
             <div class="col-xs-12">
-			
+
               <div class="box">
                 <div class="box-header with-border bg-blue">
                   <h3 class="box-title">Rekap Absensi Finger Print</h3>
+                  <div class="box-tools pull-right">
+                    <a href="?page=import_fp_to_excel" class="btn btn-success btn-sm">Import Absensi Excel</a>
+                  </div>
                 </div><!-- /.box-header -->
                
                 <div class="box-body">

@@ -1,12 +1,13 @@
 <?php
-require 'vendor/autoload.php';
+require '../vendor/autoload.php';
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
 // Koneksi Database
-require 'config/database.php';
+//$conn = require '../config/database.php';
+
 // Fungsi untuk membersihkan input
-function bersihkan($koneksi, $data) {
-    return mysqli_real_escape_string($koneksi, trim($data));
+function bersihkan(mysqli $conn, mixed $data): string {
+    return mysqli_real_escape_string($conn, trim((string) $data));
 }
 
 if (isset($_POST['submit'])) {
@@ -29,10 +30,10 @@ if (isset($_POST['submit'])) {
 
         foreach ($rows as $row) {
             // Pastikan kolom sesuai urutan: Nik, nama, waktu, status
-            $nik = bersihkan($koneksi, $row[0] ?? '');
-            $nama = bersihkan($koneksi, $row[1] ?? '');
-            $waktu = bersihkan($koneksi, $row[2] ?? '');
-            $status = bersihkan($koneksi, $row[3] ?? '');
+            $nik = bersihkan($conn, $row[0] ?? '');
+            $nama = bersihkan($conn, $row[1] ?? '');
+            $waktu = bersihkan($conn, $row[2] ?? '');
+            $status = bersihkan($conn, $row[3] ?? '');
 
             // Skip baris kosong
             if (empty($nik) || empty($waktu)) continue;
@@ -52,42 +53,36 @@ if (isset($_POST['submit'])) {
                       ($jam_masuk ? "'$jam_masuk'" : "NULL") . ", " . 
                       ($jam_keluar ? "'$jam_keluar'" : "NULL") . ", '$status')";
             
-            mysqli_query($koneksi, $query);
+            mysqli_query($conn, $query);
         }
 
-        echo "<script>alert('Data berhasil diimport!'); window.location.href = 'import_absensi_excel.php';</script>";
+        echo "<script>alert('Data berhasil diimport!'); window.location.href = '?page=rekap_absen_finger_excel';</script>";
     } catch (Exception $e) {
         die("Error loading file: " . $e->getMessage());
     }
 }
 ?>
-<div class="content">
-    <div class="container-fluid">
-      
-     
+<section class="content-header">     	
+		<section class="content">
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="box box-primary">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Import Data Absensi dari Excel</h3>
+                </div>
+                <div class="box-body">
+                  <form method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                      <label for="exampleInputFile">Pilih File Excel (XLS/XLSX):</label>
+                      <input type="file" name="file" required accept=".xls,.xlsx" id="exampleInputFile">
+                      <p class="help-block">Download format file <a href="../uploads/TemplateImport.xlsx" download="TemplateImport.xlsx">disini</a></p>
+                    </div>
+                    <button type="submit" name="submit" class="btn btn-primary">Import Data</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+</section>
 
-<body>
-    <h2>Import Data Absensi dari Excel</h2>
-    <form method="post" enctype="multipart/form-data">
-        <label>Pilih File Excel (XLS/XLSX):</label>
-        <input type="file" name="file" required accept=".xls,.xlsx">
-        <button type="submit" name="submit">Import Data</button>
-    </form>
-
-    <p><strong>Format File Excel:</strong> <a href="uploads/TemplateImport.xlsx" download="TemplateImport.xlsx">Download Format</a></p>
-    <table border="1">
-        <tr>
-            <th>Nik</th>
-            <th>Nama</th>
-            <th>Waktu (dd/mm/yyyy hh.mm)</th>
-            <th>Status (C/Masuk atau C/Keluar)</th>
-        </tr>
-        <tr>
-            <td>10001</td>
-            <td>SAEBANI</td>
-            <td>22/06/2025 07.47</td>
-            <td>C/Masuk</td>
-        </tr>
-    </table>
-</body>
-</html>
