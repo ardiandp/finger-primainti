@@ -1,6 +1,6 @@
 <?php
 
-require '../config/date_helper.php';
+
 
 // Cek apakah ada filter tanggal
 $tglawal = $_POST['tglawal'] ?? null;
@@ -64,6 +64,7 @@ if ($result->num_rows > 0) { ?>
                   <table id="example1" class="table table-bordered table-striped">
                     <thead>
                       <tr>
+                        <th>No</th>
                         <th>NIK</th>
                         <th>Nama</th>
                         <th>Tanggal</th>
@@ -73,8 +74,10 @@ if ($result->num_rows > 0) { ?>
                     </tr>
                     </thead>
                     <tbody>
-                    <?php while($row = $result->fetch_assoc()): ?>
+                    <?php $nomor = 1; while($row = $result->fetch_assoc()): ?>
                         <tr>
+                            <td><?= $nomor ?></td>
+                            
                             <td><?= $row["nik"] ?></td>
                             <td><?= $row["nama"] ?></td>
                             <td><?= $row["tanggal"] ?></td>
@@ -82,7 +85,7 @@ if ($result->num_rows > 0) { ?>
                             <td><?= $row["jam_masuk_awal"] ?></td>
                             <td><?= $row["jam_keluar_akhir"] ?></td>
                         </tr>
-                    <?php endwhile; ?>
+                    <?php $nomor++; endwhile; ?>
                     </tbody>
                   </table>
                 </div><!-- /.box-body -->
@@ -90,8 +93,67 @@ if ($result->num_rows > 0) { ?>
             </div><!-- /.col -->
           </div><!-- /.row -->
         </section><!-- /.content -->
-<?php } else {
-    echo "Tidak ada data";
-}
+<?php } else { ?>
+    
+    
+ <section class="content-header">     	
+		<section class="content">
+          <div class="row">
+            <div class="col-xs-12">
+
+              <div class="box">
+                <div class="box-header with-border bg-blue">
+                  <h3 class="box-title">Rekap Absensi Finger Print</h3>
+                  <div class="box-tools pull-right">
+                    <a href="?page=import_fp_to_excel" class="btn btn-success btn-sm">Import Absensi Excel</a>
+                  </div>
+                </div><!-- /.box-header -->
+               
+                <div class="box-body">
+                <form method="post" action="">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Tanggal Awal</label>
+                                <input type="date" name="tglawal" class="form-control" value="<?= $tglawal ?>">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Tanggal Akhir</label>
+                                <input type="date" name="tglakhir" class="form-control" value="<?= $tglakhir ?>">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>&nbsp;</label><br>
+                                <button type="submit" class="btn btn-primary">Filter</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="box-body">
+                  <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>No</th>
+                        <th>NIK</th>
+                        <th>Nama</th>
+                        <th>Tanggal</th>
+                        <th>Hari</th>
+                        <th>Jam Masuk Awal</th>
+                        <th>Jam Keluar Akhir</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                   
+                    </tbody>
+                  </table>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </section><!-- /.content -->
+<?php }
 
 ?>

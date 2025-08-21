@@ -52,7 +52,22 @@ $nik_result = $conn->query($nik_sql);
                     <div class="box">
                         <div class="box-header">
                             <h3 class="box-title">Rekap Presensi Karyawan</h3>
-                            
+                            <button type="button" onclick="tarikDataAbsensi()" class="btn btn-primary">Tarik data absensi</button>
+                            <script>
+                                function tarikDataAbsensi() {
+                                    var xhr = new XMLHttpRequest();
+                                    xhr.open('GET', 'tarik_data_absensi.php', true);
+                                    xhr.onload = function() {
+                                        if (xhr.status === 200) {
+                                            alert(xhr.responseText);
+                                            location.reload();
+                                        } else {
+                                            alert('Gagal menjalankan query');
+                                        }
+                                    }
+                                    xhr.send();
+                                }
+                            </script>
                             <!-- Form Filter -->
                             <form method="post" style="display: flex; align-items: center;">
                                 <label style="margin-right: 10px;">Tanggal Mulai:</label>
