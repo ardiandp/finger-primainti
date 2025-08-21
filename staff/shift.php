@@ -116,7 +116,7 @@ if ($result->num_rows > 0) {
                                 <h4 class="modal-title" id="myModalLabel">Edit Shift</h4>
                               </div>
                               <form action="" method="post">
-								<input type="text" name="id" value="<?php echo $row["id"]; ?>">
+								<input type="hidden" name="id" value="<?php echo $row["id"]; ?>">
                               <div class="modal-body">
                                 <div class="form-group">
                                   <label for="nama">Nama Shift</label>

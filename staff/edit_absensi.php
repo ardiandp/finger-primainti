@@ -72,6 +72,7 @@ $shift_result = $conn->query($shift_sql);
         <th>NIK</th>
         <th>Nama</th>
         <th>Tanggal</th>
+        <th>Hari</th>
         <th>masuk</th>  
         <th>Keluar</th>  
         <th>Nama Shift</th>
@@ -87,6 +88,7 @@ $shift_result = $conn->query($shift_sql);
                 <td><?php echo $row["NIK"]; ?></td>
                 <td><?php echo $row["Nama"]; ?></td>
                 <td><?php echo $row["Tanggal"]; ?></td>
+                <td><?php echo getHariFromTanggal($row["Tanggal"]); ?></td>
                 <td><?php echo $row["Jam Masuk Absensi"]; ?></td>               
                 <td><?php echo $row["Jam Keluar"]; ?></td>              
                 <td><?php echo $row["Nama Shift"]." (".$row["Jam Masuk Shift"]." - ".$row["Jam Pulang Shift"].")"; ?></td>
