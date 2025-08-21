@@ -29,7 +29,7 @@
                 </thead>
                 <tbody>
                     <?php
-                    require 'config/database.php';
+                
 
                     $sql = "SELECT k.id as idkalender, k.tanggal, s.nama AS shift, u.name AS karyawan, u.userid
                             FROM kalenderkerja k
